@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import QRCode from "react-qr-code";
+import toast, { Toaster } from "react-hot-toast";
+const notify = () => toast("Here is your toast.");
 
 let data = [
   {
@@ -57,6 +59,7 @@ function Client() {
   }, []);
   return (
     <div className="app__container">
+      <Toaster />
       <nav className="nav">KBC Quiz</nav>
 
       <div className="name__container container">
@@ -120,13 +123,14 @@ function Client() {
             onClick={() => {
               const ans = checkAnswer();
               if (ans) {
-                alert("correct ans!");
-                score(prev => prev + 10)
+                // alert("correct ans!");
+                setScore((prev) => prev + 10);
               } else {
-                alert("sorry that's incorrect!");
-                score(prev => prev - 1)
+                // alert("sorry that's incorrect!");
+                setScore((prev) => prev - 1);
               }
               setQIdx((prev) => prev + 1);
+              notify();
             }}
           >
             Submit
@@ -134,7 +138,7 @@ function Client() {
         </div>
       ) : (
         <div className="container">
-            <small>Enter your name to get started...</small>
+          <small>Enter your name to get started...</small>
         </div>
       )}
     </div>
