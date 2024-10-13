@@ -40,11 +40,11 @@
   text-align: center;
   padding: 1rem 0;
 }
-/* 
+
 .qr__container {
-  padding: 0rem 1rem;
-  margin: 0 2rem;
-} */
+    display: flex;
+    justify-content: center;
+}
 
 .container {
   padding: 0rem 1rem;
