@@ -18,7 +18,13 @@ let data = [
     question: "who's the best dude?",
     answer: "no",
     answers: ["yes", "noas", "maybe", "pass"],
-    id: 12312,
+    id: 1232112,
+  },
+  {
+    question: "who's the best dude?",
+    answer: "no",
+    answers: ["yes", "noas", "maybe", "pass"],
+    id: 12331212,
   },
 ];
 
@@ -27,8 +33,17 @@ function Client() {
   const [qIdx, setQIdx] = useState(0);
   const [name, setName] = useState("");
   const [submit, setSubmit] = useState(false);
+  const [selectedAns, setSelectedAns] = useState("");
+  const [score, setScore] = useState(0);
 
-  function checkAnswer(qID, ans) {}
+  function checkAnswer() {
+    // ans and the correct one
+    const correctAns = data[qIdx].answer;
+    if (correctAns == selectedAns) {
+      console.log("right ans");
+      return true;
+    }
+  }
 
   useEffect(() => {
     console.log("ue run");
@@ -76,58 +91,51 @@ function Client() {
 
           <div className="answers__container">
             <div className="answers">
-              {data.map((i) => {
+              {data[qIdx].answers.map((i, idx) => {
                 return (
-                  <div key={i.id}>
+                  <div key={idx}>
                     <input
                       type="radio"
                       id="html"
                       name="fav_language"
-                      value="HTML"
+                      value={i}
+                      onClick={(e) => {
+                        setSelectedAns(e.target.value);
+                      }}
                     />
                     <label htmlFor="html">
                       <span className="answer">
-                        1. {data[qIdx].answers[0]}{" "}
+                        {` ${idx}.`} {i}
                       </span>
                     </label>
                     <br /> <br />
                   </div>
                 );
               })}
-              <input type="radio" id="html" name="fav_language" value="HTML" />
-              <label htmlFor="html">
-                <span className="answer">1. {data[qIdx].answers[0]} </span>
-              </label>
-              <br /> <br />
-              <input type="radio" id="html" name="fav_language" value="HTML" />
-              <label htmlFor="html">
-                <span className="answer">2. {data[qIdx].answers[1]}</span>
-              </label>
-              <br /> <br />
-              <input type="radio" id="html" name="fav_language" value="HTML" />
-              <label htmlFor="html">
-                <span className="answer">3. {data[qIdx].answers[2]}</span>
-              </label>
-              <br /> <br />
-              <input type="radio" id="html" name="fav_language" value="HTML" />
-              <label htmlFor="html">
-                <span className="answer">4. {data[qIdx].answers[3]}</span>
-              </label>
-              <br /> <br />
             </div>
           </div>
 
           <button
             className="submit__ans"
             onClick={() => {
-              console.log("clicked");
+              const ans = checkAnswer();
+              if (ans) {
+                alert("correct ans!");
+                score(prev => prev + 10)
+              } else {
+                alert("sorry that's incorrect!");
+                score(prev => prev - 1)
+              }
+              setQIdx((prev) => prev + 1);
             }}
           >
             Submit
           </button>
         </div>
       ) : (
-        <div></div>
+        <div className="container">
+            <small>Enter your name to get started...</small>
+        </div>
       )}
     </div>
   );
