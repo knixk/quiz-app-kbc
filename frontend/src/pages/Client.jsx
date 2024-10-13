@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
-import QRCode from "react-qr-code";
 import toast, { Toaster } from "react-hot-toast";
-const notify = () => toast("Here is your toast.");
+const notify = (msg) => toast(msg);
 
 let data = [
   {
@@ -12,26 +11,25 @@ let data = [
   },
   {
     question: "who's the best dude?",
-    answer: "no",
+    answer: "nosd",
     answers: ["yes", "nosd", "maybe", "pass"],
     id: 12323,
   },
   {
     question: "who's the best dude?",
-    answer: "no",
+    answer: "noas",
     answers: ["yes", "noas", "maybe", "pass"],
     id: 1232112,
   },
   {
     question: "who's the best dude?",
-    answer: "no",
+    answer: "noas",
     answers: ["yes", "noas", "maybe", "pass"],
     id: 12331212,
   },
 ];
 
 function Client() {
-  const [qr, setQr] = useState("www.google.in");
   const [qIdx, setQIdx] = useState(0);
   const [name, setName] = useState("");
   const [submit, setSubmit] = useState(false);
@@ -43,6 +41,7 @@ function Client() {
     const correctAns = data[qIdx].answer;
     if (correctAns == selectedAns) {
       console.log("right ans");
+      console.log(selectedAns)
       return true;
     }
   }
@@ -88,8 +87,11 @@ function Client() {
 
       {qIdx <= data.length - 1 && submit ? (
         <div className="quiz__container container">
+            <span className="score">
+                Score: {score}
+            </span>
           <div className="question__container">
-            <span className="question">Q. {data[qIdx].question} </span>
+            <span className="question">{`${qIdx + 1}.`} {data[qIdx].question} </span>
           </div>
 
           <div className="answers__container">
@@ -123,14 +125,13 @@ function Client() {
             onClick={() => {
               const ans = checkAnswer();
               if (ans) {
-                // alert("correct ans!");
                 setScore((prev) => prev + 10);
+                notify("Correct Answer! +10");
               } else {
-                // alert("sorry that's incorrect!");
+                notify("Incorrect Answer.. -1");
                 setScore((prev) => prev - 1);
               }
               setQIdx((prev) => prev + 1);
-              notify();
             }}
           >
             Submit
