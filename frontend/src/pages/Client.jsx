@@ -53,10 +53,12 @@ function Client() {
               placeholder="Enter your name.."
             />
             <button
-              onSubmit={(e) => {
-                e.preventDefault();
-                setSubmit(true);
-              }}
+              onClick={setSubmit(true)}
+              //   onSubmit={(e) => {
+              //     e.preventDefault();
+              //     console.log(e);
+              //     setSubmit(true);
+              //   }}
             >
               Submit
             </button>
