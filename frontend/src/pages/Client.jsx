@@ -116,8 +116,7 @@ function Client() {
         </div>
       ) : (
         <div className="container">
-          <small>Enter your name to get started...</small>
-          
+          {/* <small>Enter your name to get started...</small> */}
         </div>
       )}
     </div>
