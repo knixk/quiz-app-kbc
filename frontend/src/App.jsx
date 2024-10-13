@@ -28,6 +28,13 @@ function App() {
 
   useEffect(() => {
     console.log("ue run");
+
+    const fetchData = async () => {
+      const data2 = await fetch("/data");
+      console.log(data2);
+    };
+
+    fetchData();
   }, []);
   return (
     <div className="app__container">

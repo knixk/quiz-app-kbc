@@ -4,4 +4,3 @@ one host screen,
 
 a question is displayed with a qr code to participate
 
-
