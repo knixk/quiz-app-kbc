@@ -1,26 +1,6 @@
 import { useState, useEffect } from "react";
 import QRCode from "react-qr-code";
-
-let data = [
-  {
-    question: "who's the best dude?",
-    answer: "no",
-    answers: ["yes", "no", "maybe", "pass"],
-    id: 1232,
-  },
-  {
-    question: "who's the most best dude?",
-    answer: "no",
-    answers: ["yes", "nosd", "maybe", "pass"],
-    id: 12323,
-  },
-  {
-    question: "who's the best amazing dude?",
-    answer: "no",
-    answers: ["yes", "noas", "maybe", "pass"],
-    id: 12312,
-  },
-];
+import data from "../data.js";
 
 function Main() {
   const [qr, setQr] = useState("www.google.in");
