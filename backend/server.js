@@ -1,53 +1,41 @@
 const express = require('express');
-const http = require('http');
-const socketIo = require('socket.io');
 const cors = require('cors');
-const path = require('path');
-
 const app = express();
-const server = http.createServer(app);
-const io = socketIo(server, { cors: { origin: '*' } });
+const port = 5000;
 
+// Middleware
+app.use(express.json());
 app.use(cors());
 
-// Serve the React app
-app.use(express.static(path.join(__dirname, 'client/build')));
-
-let currentQuestionIndex = 0;
+// Sample questions
 const questions = [
-  {
-    question: 'What is the capital of France?',
-    options: ['Paris', 'London', 'Berlin', 'Madrid'],
-    answer: 'Paris',
-  },
-  // Add more questions here
+  { id: 1, question: "What is the capital of France?", options: ["Paris", "London", "Berlin", "Madrid"], answer: "Paris" },
+  { id: 2, question: "Which planet is known as the Red Planet?", options: ["Mars", "Earth", "Jupiter", "Venus"], answer: "Mars" },
+  { id: 3, question: "What is the largest mammal?", options: ["Elephant", "Blue Whale", "Shark", "Giraffe"], answer: "Blue Whale" },
+  { id: 4, question: "Who wrote 'Hamlet'?", options: ["Shakespeare", "Hemingway", "Dickens", "Austen"], answer: "Shakespeare" },
+  { id: 5, question: "What is the boiling point of water?", options: ["90°C", "100°C", "120°C", "150°C"], answer: "100°C" }
 ];
 
-// Socket events
-io.on('connection', (socket) => {
-  console.log('New client connected');
+// Store player answers
+let currentQuestionIndex = 0;
 
-  // Send current question to new clients
-  socket.emit('new-question', questions[currentQuestionIndex]);
-
-  socket.on('submit-answer', ({ playerName, answer }) => {
-    if (answer === questions[currentQuestionIndex].answer) {
-      io.emit('correct-answer', { playerName });
-      currentQuestionIndex = (currentQuestionIndex + 1) % questions.length;
-      io.emit('new-question', questions[currentQuestionIndex]);
-    } else {
-      socket.emit('wrong-answer', { message: 'Incorrect answer!' });
-    }
-  });
-
-  socket.on('disconnect', () => {
-    console.log('Client disconnected');
-  });
-});
-
+// Route to get the current question
 app.get('/question', (req, res) => {
   res.json(questions[currentQuestionIndex]);
 });
 
-const PORT = process.env.PORT || 5000;
-server.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+// Route to submit the answer
+app.post('/answer', (req, res) => {
+  const { answer, playerName } = req.body;
+  const correctAnswer = questions[currentQuestionIndex].answer;
+  if (answer === correctAnswer) {
+    res.json({ message: `Congratulations ${playerName}!`, correct: true });
+    currentQuestionIndex = (currentQuestionIndex + 1) % questions.length; // Move to next question
+  } else {
+    res.json({ message: `Incorrect answer, ${playerName}.`, correct: false });
+  }
+});
+
+app.listen(port, () => {
+  console.log(`Server is running on http://localhost:${port}`);
+});
