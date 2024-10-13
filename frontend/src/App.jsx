@@ -30,11 +30,11 @@ function App() {
   const [qIdx, setQIdx] = useState(0);
 
   useEffect(() => {
-    console.log("ue run");
+    // console.log("ue run");
 
     const fetchData = async () => {
       const data2 = await fetch("/data");
-      console.log(data2);
+    //   console.log(data2);
     };
 
     fetchData();

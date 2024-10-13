@@ -9,13 +9,13 @@ let data = [
     id: 1232,
   },
   {
-    question: "who's the best dude?",
+    question: "who's the most best dude?",
     answer: "no",
     answers: ["yes", "nosd", "maybe", "pass"],
     id: 12323,
   },
   {
-    question: "who's the best dude?",
+    question: "who's the best amazing dude?",
     answer: "no",
     answers: ["yes", "noas", "maybe", "pass"],
     id: 12312,
@@ -23,7 +23,7 @@ let data = [
 ];
 
 function Main() {
-  const [qr, setQr] = useState("");
+  const [qr, setQr] = useState("www.google.in");
   const [qIdx, setQIdx] = useState(0);
 
   useEffect(() => {
@@ -47,10 +47,28 @@ function Main() {
           </div>
 
           <div className="answers__container">
-            <span className="answer">1. {data[qIdx].answers[0]} </span>
-            <span className="answer">2. {data[qIdx].answers[1]}</span>
-            <span className="answer">3. {data[qIdx].answers[2]}</span>
-            <span className="answer">4. {data[qIdx].answers[3]}</span>
+            <div className="answers">
+              <input type="radio" id="html" name="fav_language" value="HTML" />
+              <label htmlFor="html">
+                <span className="answer">1. {data[qIdx].answers[0]} </span>
+              </label>
+              <br /> <br />
+              <input type="radio" id="html" name="fav_language" value="HTML" />
+              <label htmlFor="html">
+                <span className="answer">2. {data[qIdx].answers[1]}</span>
+              </label>
+              <br /> <br />
+              <input type="radio" id="html" name="fav_language" value="HTML" />
+              <label htmlFor="html">
+                <span className="answer">3. {data[qIdx].answers[2]}</span>
+              </label>
+              <br /> <br />
+              <input type="radio" id="html" name="fav_language" value="HTML" />
+              <label htmlFor="html">
+                <span className="answer">4. {data[qIdx].answers[3]}</span>
+              </label>
+              <br /> <br />
+            </div>
           </div>
         </div>
       ) : (
