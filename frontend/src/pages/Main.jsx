@@ -48,6 +48,7 @@ function Main() {
                 <span className="answer">4. {data[qIdx].answers[3]}</span>
               </label>
               <br /> <br />
+              <small>Scan code below to get started..</small>
             </div>
           </div>
         </div>

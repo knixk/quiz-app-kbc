@@ -7,15 +7,18 @@ function Client() {
   const [qIdx, setQIdx] = useState(0);
   const [name, setName] = useState("");
   const [submit, setSubmit] = useState(false);
-  const [selectedAns, setSelectedAns] = useState("");
   const [score, setScore] = useState(0);
+  const [selectedIdx, setSelectedIdx] = useState(0);
 
   function checkAnswer() {
     // ans and the correct one
     const correctAns = data[qIdx].answer;
-    if (correctAns == selectedAns) {
+    const currentAns = data[qIdx].answers[selectedIdx];
+
+    console.log(currentAns);
+
+    if (correctAns == currentAns) {
       console.log("right ans");
-      console.log(selectedAns);
       return true;
     }
   }
@@ -78,8 +81,8 @@ function Client() {
                       id="html"
                       name="fav_language"
                       value={i}
-                      onClick={(e) => {
-                        setSelectedAns(e.target.value);
+                      onClick={() => {
+                        setSelectedIdx(idx);
                       }}
                     />
                     <label htmlFor="html">
@@ -106,7 +109,6 @@ function Client() {
                 setScore((prev) => prev - 1);
               }
               setQIdx((prev) => prev + 1);
-              console.log(selectedAns)
             }}
           >
             Submit
@@ -115,6 +117,7 @@ function Client() {
       ) : (
         <div className="container">
           <small>Enter your name to get started...</small>
+          
         </div>
       )}
     </div>
