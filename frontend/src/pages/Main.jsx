@@ -2,13 +2,15 @@ import { useState, useEffect } from "react";
 import QRCode from "react-qr-code";
 import data from "../data.js";
 import { nanoid } from "nanoid";
-import { Navigate } from "react-router-dom";
 
+// generating a unique user id
 const userId = nanoid();
 
 function Main() {
   const [qr, setQr] = useState(userId);
   const [qIdx, setQIdx] = useState(0);
+  const [selectedIdx, setSelectedIdx] = useState(0);
+
 
   const url = `${window.location.href}quiz/${qr}`;
   // console.log(url, "url")
@@ -34,39 +36,43 @@ function Main() {
       <nav className="nav">KBC Quiz</nav>
 
       {qIdx <= data.length - 1 ? (
-        <div className="quiz__container container">
-          <div className="question__container">
-            <span className="question">Q. {data[qIdx].question} </span>
-          </div>
+        <div className="flex__container">
+          <div className="quiz__container container">
+            <div className="question__container">
+              <span className="question">
+                {`${qIdx + 1}.`} {data[qIdx].question}{" "}
+              </span>
+            </div>
 
-          <div className="answers__container">
-            <div className="answers">
-              <input type="radio" id="html" name="fav_language" value="HTML" />
-              <label htmlFor="html">
-                <span className="answer">1. {data[qIdx].answers[0]} </span>
-              </label>
-              <br /> <br />
-              <input type="radio" id="html" name="fav_language" value="HTML" />
-              <label htmlFor="html">
-                <span className="answer">2. {data[qIdx].answers[1]}</span>
-              </label>
-              <br /> <br />
-              <input type="radio" id="html" name="fav_language" value="HTML" />
-              <label htmlFor="html">
-                <span className="answer">3. {data[qIdx].answers[2]}</span>
-              </label>
-              <br /> <br />
-              <input type="radio" id="html" name="fav_language" value="HTML" />
-              <label htmlFor="html">
-                <span className="answer">4. {data[qIdx].answers[3]}</span>
-              </label>
-              <br /> <br />
-              <small>Scan code below to get started..</small>
+            <div className="answers__container">
+              <div className="answers">
+                {data[qIdx].answers.map((i, idx) => {
+                  return (
+                    <div key={idx}>
+                      <input
+                        type="radio"
+                        id="html"
+                        name="fav_language"
+                        value={i}
+                        onClick={() => {
+                          setSelectedIdx(idx);
+                        }}
+                      />
+                      <label htmlFor="html">
+                        <span className="answer">
+                          {` ${idx + 1}.`} {i}
+                        </span>
+                      </label>
+                      <br /> <br />
+                    </div>
+                  );
+                })}
+              </div>
             </div>
           </div>
         </div>
       ) : (
-        <div>quiz is over</div>
+        <div className="container end__container"></div>
       )}
 
       <div className="qr__container container">

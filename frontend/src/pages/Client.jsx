@@ -51,13 +51,17 @@ function Client() {
             className="form"
             onSubmit={(e) => {
               e.preventDefault();
-              console.log(e);
+              if (name === "") {
+                notify("Please enter your name...");
+                return;
+              }
               setSubmit(true);
-
             }}
           >
             <input
-              onChange={(e) => setName(e.target.value)}
+              onChange={(e) => {
+                setName(e.target.value);
+              }}
               type="text"
               className="name__input"
               value={name}
