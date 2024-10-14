@@ -106,9 +106,9 @@ function Client() {
                 const ans = checkAnswer();
                 if (ans) {
                   setScore((prev) => prev + 10);
-                  notify("Congratulations! Correct Answer +10");
+                  notify(`Congratulations ${name}!  Correct Answer +10`);
                 } else {
-                  notify("Sorry! Incorrect Answer.. -1");
+                  notify(`Sorry ${name}! Incorrect Answer.. -1`);
                   setScore((prev) => prev - 1);
                 }
                 setQIdx((prev) => prev + 1);
