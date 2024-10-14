@@ -1,7 +1,7 @@
 # quiz-app-kbc
 
 deployed using netlify:
-
+https://kanishk-quiz.netlify.app/
 
 this app is running on react-vite
 
