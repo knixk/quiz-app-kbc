@@ -1,5 +1,8 @@
 # quiz-app-kbc
- 
+
+deployed using netlify:
+
+
 this app is running on react-vite
 
 to run:
