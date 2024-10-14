@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import QRCode from "react-qr-code";
 import data from "../data.js";
 import { nanoid } from "nanoid";
+import { Navigate } from "react-router-dom";
 
 const userId = nanoid();
 
@@ -9,11 +10,14 @@ function Main() {
   const [qr, setQr] = useState(userId);
   const [qIdx, setQIdx] = useState(0);
 
+  const url = `${window.location.href}quiz/${qr}`;
+  // console.log(url, "url")
+
   // const data3 = process.env.DEPLOYED_URL;
   // console.log(data3)
 
-  const apiUrl = process.env.REACT_APP_API_URL;
-  console.log(apiUrl); // Outputs: https://api.example.com
+  // const apiUrl = process.env.REACT_APP_API_URL;
+  // console.log(apiUrl); // Outputs: https://api.example.com
 
   useEffect(() => {
     console.log("ue run");
@@ -66,7 +70,7 @@ function Main() {
       )}
 
       <div className="qr__container container">
-        <QRCode size={150} value={qr}></QRCode>
+        <QRCode size={150} value={url && url}></QRCode>
       </div>
     </div>
   );
