@@ -5,24 +5,16 @@ import { nanoid } from "nanoid";
 
 // generating a unique user id
 const userId = nanoid();
+const shortLink = 'https://bit.ly/3zVM59i';
 
 function Main() {
   const [qr, setQr] = useState(userId);
   const [qIdx, setQIdx] = useState(0);
   const [selectedIdx, setSelectedIdx] = useState(0);
 
-  const url = `${window.location.href}quiz/${qr}`;
-  // console.log(url, "url")
-
-  // const data3 = process.env.DEPLOYED_URL;
-  // console.log(data3)
-
-  // const apiUrl = process.env.REACT_APP_API_URL;
-  // console.log(apiUrl); // Outputs: https://api.example.com
+  // const url = `${window.location.href}quiz/${qr}/`;
 
   useEffect(() => {
-    console.log("ue run");
-
     const fetchData = async () => {
       const data2 = await fetch("/data");
       console.log(data2);
@@ -74,7 +66,7 @@ function Main() {
 
             <div className="right">
               <div className="qr__container container">
-                <QRCode size={150} value={url && url}></QRCode>
+                <QRCode size={150} value={shortLink}></QRCode>
               </div>
             </div>
           </div>
@@ -82,10 +74,6 @@ function Main() {
       ) : (
         <div className="container end__container"></div>
       )}
-
-      {/* <div className="qr__container container">
-        <QRCode size={150} value={url && url}></QRCode>
-      </div> */}
     </div>
   );
 }

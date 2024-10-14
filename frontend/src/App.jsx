@@ -8,7 +8,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Main></Main>}></Route>
-        <Route path="/quiz/:id" element={<Client></Client>}></Route>
+        <Route path="/quiz" element={<Client></Client>}></Route>
       </Routes>
     </BrowserRouter>
   );

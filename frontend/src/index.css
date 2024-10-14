@@ -77,7 +77,6 @@ body {
 .qr__container {
   display: flex;
   justify-content: center;
-  /* margin: 1rem 0; */
   padding: 1rem 0;
 }
 
@@ -92,7 +91,6 @@ small {
 
 .name__container button,
 .restart__btn {
-  /* padding: 0.5rem; */
   padding: 0.5rem 1rem;
   margin: 0 0 20px 0;
   letter-spacing: 1px;
@@ -112,7 +110,6 @@ small {
 
 .name {
   padding-top: 10px;
-  /* letter-spacing: 1px; */
 }
 
 .name__container {
@@ -156,7 +153,6 @@ small {
   flex-direction: row;
   align-items: center;
 }
-
 
 .thanks {
   margin: 1rem 0;

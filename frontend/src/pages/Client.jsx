@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import toast, { Toaster } from "react-hot-toast";
 const notify = (msg) => toast(msg);
 import data from "../data.js";
-// import { nanoid } from 'nanoid'
 
 function Client() {
   const [qIdx, setQIdx] = useState(0);
@@ -10,7 +9,6 @@ function Client() {
   const [submit, setSubmit] = useState(false);
   const [score, setScore] = useState(0);
   const [selectedIdx, setSelectedIdx] = useState(0);
-  const [userId, setUserId] = useState(null);
 
   function checkAnswer() {
     // ans and the correct one
@@ -30,16 +28,7 @@ function Client() {
     window.location.reload();
   }
 
-  useEffect(() => {
-    console.log("ue run");
-
-    const fetchData = async () => {
-      const data2 = await fetch("/data");
-      //   console.log(data2);
-    };
-
-    fetchData();
-  }, []);
+  useEffect(() => {}, []);
   return (
     <div className="app__container">
       <Toaster />
@@ -76,7 +65,9 @@ function Client() {
         <div className="flex__container">
           <div className="quiz__container container">
             <span className="name">Name: {name}</span>
-            <span className="score">Score: <span className="score__span">{score}</span> </span>
+            <span className="score">
+              Score: <span className="score__span">{score}</span>{" "}
+            </span>
             <div className="question__container">
               <span className="question">
                 {`${qIdx + 1}.`} {data[qIdx].question}{" "}
