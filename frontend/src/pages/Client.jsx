@@ -76,7 +76,7 @@ function Client() {
         <div className="flex__container">
           <div className="quiz__container container">
             <span className="name">Name: {name}</span>
-            <span className="score">Score: {score}</span>
+            <span className="score">Score: <span className="score__span">{score}</span> </span>
             <div className="question__container">
               <span className="question">
                 {`${qIdx + 1}.`} {data[qIdx].question}{" "}
@@ -135,7 +135,7 @@ function Client() {
               <p>
                 Final Score: <span className="score">{score}</span>
               </p>
-              <p>Thank you for playing {name}!</p>
+              <p className="thanks">Thank you for playing {name}!</p>
               <small>Would you like to play again?</small>
               <button className="restart__btn" onClick={handleRestart}>
                 Restart Quiz

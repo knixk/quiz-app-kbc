@@ -18,7 +18,8 @@ body {
 .flex__container {
   display: flex;
   justify-content: center;
-  /* margin: 1rem 0; */
+  margin: 1rem 0;
+  padding: 1rem;
 }
 
 .answers__container {
@@ -35,8 +36,9 @@ body {
   background-color: rgb(252, 252, 252);
   max-width: 800px;
   width: 80%;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
-  padding: 2rem;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px,
+    rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
+  margin: 1rem 0;
 }
 
 .quiz__container button {
@@ -46,7 +48,8 @@ body {
   border: none;
   border-radius: 5px;
   transition: 0.2s ease-in-out;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px,
+    rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
   align-self: center;
 }
 
@@ -55,11 +58,13 @@ body {
 }
 
 .question {
+  display: block;
   font-size: 2rem;
+  margin-top: 1rem;
 }
 
 .nav {
-  background-color: rgb(80, 28, 201);
+  background-color: brown;
   font-weight: bold;
   letter-spacing: 6px;
   color: white;
@@ -72,6 +77,8 @@ body {
 .qr__container {
   display: flex;
   justify-content: center;
+  /* margin: 1rem 0; */
+  padding: 1rem 0;
 }
 
 .container {
@@ -124,7 +131,9 @@ small {
 
 .score {
   display: block;
-  margin: 1rem 0;
+  margin-top: 1rem;
+  color: #333;
+  font-weight: bold;
 }
 
 .restart__btn {
@@ -141,4 +150,14 @@ small {
 .end__container small {
   margin-top: 10px;
   display: block;
+}
+
+.flex__column {
+  flex-direction: row;
+  align-items: center;
+}
+
+
+.thanks {
+  margin: 1rem 0;
 }
